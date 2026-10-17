@@ -11,6 +11,7 @@ class_name Electronic extends StaticBody3D
 @onready var mesh_instance_3d: MeshInstance3D = %MeshInstance3D
 @onready var click_timer: Timer = %ClickTimer
 @onready var click_audio: AudioStreamPlayer3D = %ClickAudio
+@onready var broken_audio: AudioStreamPlayer3D = %BrokenAudio
 
 
 var _click_to_fix: int = 2
@@ -19,8 +20,10 @@ var _click_to_fix: int = 2
 func _physics_process(_delta: float) -> void:
 	if broken:
 		broken_gpu_particles.emitting = true
+		broken_audio.play()
 	else:
 		broken_gpu_particles.emitting = false
+		broken_audio.stop()
 	
 	if not click_timer.is_stopped():
 		mesh_instance_3d.position.x = randf_range(0.0, 0.01)

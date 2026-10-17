@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dyvj5c3o4l3lj"]
+
+[ext_resource type="PackedScene" uid="uid://chgl37vkb543g" path="res://pinball.tscn" id="1_ig7tw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ig7tw"]
+sky_material = SubResource("ProceduralSkyMaterial_7dm0k")
+
+[sub_resource type="Environment" id="Environment_0xm2m"]
+background_mode = 2
+sky = SubResource("Sky_ig7tw")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sdgyq"]
+seed = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r44sk"]
+noise = SubResource("FastNoiseLite_sdgyq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5l758"]
+albedo_color = Color(0.10747976, 0.10747973, 0.10747973, 1)
+albedo_texture = SubResource("NoiseTexture2D_r44sk")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_knuud"]
+material = SubResource("StandardMaterial3D_5l758")
+size = Vector2(10, 10)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kj1hx"]
+seed = -2
+frequency = 0.0484
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sdgyq"]
+noise = SubResource("FastNoiseLite_kj1hx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r44sk"]
+albedo_color = Color(0, 0.19606715, 0, 1)
+albedo_texture = SubResource("NoiseTexture2D_sdgyq")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5l758"]
+material = SubResource("StandardMaterial3D_r44sk")
+size = Vector2(10, 5)
+orientation = 2
+
+[node name="Main" type="Node3D" unique_id=1948636740]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=344194301]
+environment = SubResource("Environment_0xm2m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=962082841]
+transform = Transform3D(0.8660254, -0.43301272, 0.24999999, 0, 0.49999997, 0.86602545, -0.5, -0.75, 0.43301266, 0, 10, 0)
+visible = false
+shadow_enabled = true
+
+[node name="World" type="Node3D" parent="." unique_id=1076439096]
+
+[node name="FloorMesh" type="MeshInstance3D" parent="World" unique_id=1743783986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+mesh = SubResource("PlaneMesh_knuud")
+
+[node name="Wall1" type="MeshInstance3D" parent="World" unique_id=1554698737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -2.7)
+mesh = SubResource("PlaneMesh_5l758")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="World" unique_id=444898706]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28716373, 3.843058, 1.0270019)
+light_energy = 2.0
+shadow_enabled = true
+omni_range = 10.0
+
+[node name="Pinball" parent="." unique_id=1882199687 instance=ExtResource("1_ig7tw")]

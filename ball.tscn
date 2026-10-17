@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cvxwk8nmkb0rn"]
+
+[ext_resource type="Script" uid="uid://ber3d6shcmi7q" path="res://ball.gd" id="1_x8fbi"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_knuud"]
+radius = 0.02
+height = 0.04
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_knuud"]
+radius = 0.02
+
+[node name="Ball" type="RigidBody3D" unique_id=1864914457]
+collision_layer = 16
+collision_mask = 3
+continuous_cd = true
+script = ExtResource("1_x8fbi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1838325741]
+mesh = SubResource("SphereMesh_knuud")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=629607915]
+shape = SubResource("SphereShape3D_knuud")

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dyvj5c3o4l3lj"]
 
-[ext_resource type="PackedScene" uid="uid://chgl37vkb543g" path="res://pinball.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://blx3gi1awa144" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://chgl37vkb543g" path="res://Pinball/pinball.tscn" id="1_ig7tw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -44,6 +45,7 @@ size = Vector2(10, 5)
 orientation = 2
 
 [node name="Main" type="Node3D" unique_id=1948636740]
+script = ExtResource("1_0xm2m")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=344194301]
 environment = SubResource("Environment_0xm2m")
@@ -63,6 +65,10 @@ mesh = SubResource("PlaneMesh_knuud")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -2.7)
 mesh = SubResource("PlaneMesh_5l758")
 
+[node name="Wall2" type="MeshInstance3D" parent="World" unique_id=1476136328]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.0370488, 2.5, -1.6488168)
+mesh = SubResource("PlaneMesh_5l758")
+
 [node name="OmniLight3D" type="OmniLight3D" parent="World" unique_id=444898706]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28716373, 3.843058, 1.0270019)
 light_energy = 2.0
@@ -70,3 +76,39 @@ shadow_enabled = true
 omni_range = 10.0
 
 [node name="Pinball" parent="." unique_id=1882199687 instance=ExtResource("1_ig7tw")]
+unique_name_in_owner = true
+
+[node name="UI" type="Control" parent="." unique_id=356758208]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1927254169]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="StartButton" type="Button" parent="UI/VBoxContainer" unique_id=1797793119]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Start"
+
+[node name="BackgroundColor" type="ColorRect" parent="UI" unique_id=1608604327]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[connection signal="pressed" from="UI/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

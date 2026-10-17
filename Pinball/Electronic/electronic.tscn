@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://f7ypqae6q7xo"]
+
+[ext_resource type="Script" uid="uid://y18ota7ir3e2" path="res://Pinball/Electronic/electronic.gd" id="1_2lrt6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6ii5"]
+albedo_color = Color(0.31061712, 0.31061712, 0.3106171, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_knuud"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_t6ii5")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_knuud"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_knuud"]
+emission_shape = 3
+emission_box_extents = Vector3(0.05, 0.05, 0.05)
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+damping_min = 0.5
+damping_max = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r44sk"]
+albedo_color = Color(0.5497691, 0.08518318, 0.08459342, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5l758"]
+material = SubResource("StandardMaterial3D_r44sk")
+size = Vector2(0.01, 0.01)
+orientation = 2
+
+[node name="Electronic" type="StaticBody3D" unique_id=1712152631]
+script = ExtResource("1_2lrt6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1176892843]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.049874485, 0)
+mesh = SubResource("BoxMesh_knuud")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1913162127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.050018385, 0)
+shape = SubResource("BoxShape3D_knuud")
+
+[node name="BrokenGPUParticles" type="GPUParticles3D" parent="." unique_id=1188604213]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+emitting = false
+amount = 40
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_knuud")
+draw_pass_1 = SubResource("PlaneMesh_5l758")
+
+[node name="ClickAudio" type="AudioStreamPlayer3D" parent="." unique_id=596150069]
+unique_name_in_owner = true
+
+[node name="ClickTimer" type="Timer" parent="." unique_id=1605417976]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="ClickTimer" to="." method="_on_click_timer_timeout"]

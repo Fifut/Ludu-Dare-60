@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvxwk8nmkb0rn"]
 
-[ext_resource type="Script" uid="uid://ber3d6shcmi7q" path="res://ball.gd" id="1_x8fbi"]
+[ext_resource type="Script" uid="uid://ber3d6shcmi7q" path="res://Pinball/Ball/ball.gd" id="1_x8fbi"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_knuud"]
 radius = 0.02

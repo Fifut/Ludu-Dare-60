@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://1oedwje20772"]
+
+[ext_resource type="PackedScene" uid="uid://b81v8p1rsmk1l" path="res://Assets/Models 3D/Electronic front.glb" id="1_hudyf"]
+[ext_resource type="PackedScene" uid="uid://f7ypqae6q7xo" path="res://Pinball/Electronic/electronic.tscn" id="2_qomfy"]
+[ext_resource type="PackedScene" uid="uid://kp47jywi4cgg" path="res://Pinball/Front/score_wheel.tscn" id="3_l8ppm"]
+
+[node name="Electronic front" unique_id=392062381 instance=ExtResource("1_hudyf")]
+
+[node name="Solide1" parent="." index="0" unique_id=1186744638]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, -0.019889567)
+
+[node name="Electronics" type="Node3D" parent="." index="1" unique_id=1021808428]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07647705)
+
+[node name="Electronic1" parent="Electronics" index="0" unique_id=1712152631 instance=ExtResource("2_qomfy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
+
+[node name="ScoreWeels" type="Node3D" parent="." index="2" unique_id=703707562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15787569)
+
+[node name="ScoreWheel100" parent="ScoreWeels" index="0" unique_id=591217884 instance=ExtResource("3_l8ppm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12, 0.20127337, 0)
+
+[node name="ScoreWheel010" parent="ScoreWeels" index="1" unique_id=77019882 instance=ExtResource("3_l8ppm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20127337, 0)
+
+[node name="ScoreWheel001" parent="ScoreWeels" index="2" unique_id=806380280 instance=ExtResource("3_l8ppm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, 0.20127337, 0)

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bpophyon6amod"]
+
+[ext_resource type="PackedScene" uid="uid://ennsmb28f1bc" path="res://Assets/Models 3D/Electronic playfield.glb" id="1_ekxgg"]
+[ext_resource type="Script" uid="uid://bd4sutf68nd33" path="res://Pinball/Playfield/electronic_playfield.gd" id="2_f260g"]
+[ext_resource type="PackedScene" uid="uid://f7ypqae6q7xo" path="res://Pinball/Electronic/electronic.tscn" id="3_v6a2x"]
+
+[node name="Electronic playfield" unique_id=221682441 instance=ExtResource("1_ekxgg")]
+script = ExtResource("2_f260g")
+
+[node name="Solide1" parent="." index="0" unique_id=1653723577]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, -0.02, 0)
+
+[node name="Electronics" type="Node3D" parent="." index="1" unique_id=814144387]
+unique_name_in_owner = true
+
+[node name="Electronic1" parent="Electronics" index="0" unique_id=1712152631 instance=ExtResource("3_v6a2x")]
+
+[node name="Electronic2" parent="Electronics" index="1" unique_id=2033845912 instance=ExtResource("3_v6a2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
+broken = true
+
+[node name="Electronic3" parent="Electronics" index="2" unique_id=1344165445 instance=ExtResource("3_v6a2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0.2)
+
+[node name="BreakDownTimer" type="Timer" parent="." index="2" unique_id=7929312]
+unique_name_in_owner = true
+autostart = true
+
+[connection signal="timeout" from="BreakDownTimer" to="." method="_on_break_down_timer_timeout"]

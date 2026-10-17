@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://dswg87hdylty2" path="res://Assets/Sounds/hammer.wav" id="2_2m5bx"]
 [ext_resource type="AudioStream" uid="uid://cjq81eg6lydas" path="res://Assets/Sounds/coil.wav" id="2_8585l"]
 [ext_resource type="AudioStream" uid="uid://bqg820o20ag2a" path="res://Assets/Sounds/fix.wav" id="4_pgkgt"]
+[ext_resource type="PackedScene" uid="uid://bxm143hitksum" path="res://lighting.tscn" id="5_1ab7p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6ii5"]
 albedo_color = Color(0.31061712, 0.31061712, 0.3106171, 1)
@@ -74,7 +75,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.047833517, -0.055615034)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 emitting = false
-amount = 40
+amount = 100
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_knuud")
 draw_pass_1 = SubResource("PlaneMesh_5l758")
@@ -92,10 +93,20 @@ volume_db = -15.0
 unique_name_in_owner = true
 stream = ExtResource("4_pgkgt")
 
+[node name="LightingMesh" parent="." unique_id=1077398863 node_paths=PackedStringArray("from") instance=ExtResource("5_1ab7p")]
+unique_name_in_owner = true
+from = NodePath("..")
+
 [node name="ClickTimer" type="Timer" parent="." unique_id=1605417976]
 unique_name_in_owner = true
 wait_time = 0.2
 one_shot = true
 
+[node name="BadTimer" type="Timer" parent="." unique_id=305349201]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="finished" from="FixAudio" to="." method="_on_fix_audio_finished"]
+[connection signal="timeout" from="BadTimer" to="." method="_on_bad_timer_timeout"]

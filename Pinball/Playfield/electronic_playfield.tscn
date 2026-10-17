@@ -7,8 +7,8 @@
 [node name="Electronic playfield" unique_id=221682441 instance=ExtResource("1_ekxgg")]
 script = ExtResource("2_f260g")
 
-[node name="Solide1" parent="." index="0" unique_id=1653723577]
-transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, -0.02, 0)
+[node name="Solide1" parent="." index="0" unique_id=878644020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
 
 [node name="Electronics" type="Node3D" parent="." index="1" unique_id=814144387]
 unique_name_in_owner = true

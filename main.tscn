@@ -16,6 +16,7 @@ sky_material = SubResource("ProceduralSkyMaterial_7dm0k")
 [sub_resource type="Environment" id="Environment_0xm2m"]
 background_mode = 2
 sky = SubResource("Sky_ig7tw")
+glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_knuud"]
 albedo_color = Color(0.32941177, 0, 0, 1)
@@ -64,10 +65,8 @@ environment = SubResource("Environment_0xm2m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=962082841]
 transform = Transform3D(0.8660254, -0.43301272, 0.24999999, 0, 0.49999997, 0.86602545, -0.5, -0.75, 0.43301266, 0, 10, 0)
+visible = false
 shadow_enabled = true
-shadow_bias = 0.0
-shadow_blur = 1.5
-directional_shadow_max_distance = 40.0
 
 [node name="World" type="Node3D" parent="." unique_id=1076439096]
 
@@ -96,15 +95,14 @@ mesh = SubResource("PlaneMesh_5l758")
 
 [node name="OmniLight3D1" type="OmniLight3D" parent="World" unique_id=444898706]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28716373, 2.2961102, -0.4607947)
-visible = false
-light_energy = 2.0
 shadow_enabled = true
+shadow_bias = 0.01
+shadow_blur = 2.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="World" unique_id=212455777]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0037798882, 0.4590702, -0.6560221)
 light_color = Color(0.2600161, 0.47939676, 1, 1)
 shadow_enabled = true
-shadow_bias = 0.0
 omni_range = 3.0
 
 [node name="toolbox" parent="World" unique_id=801821546 instance=ExtResource("2_1bvp3")]

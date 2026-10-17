@@ -28,6 +28,10 @@ func _ready() -> void:
 	)
 
 
+#func _process(_delta: float) -> void:
+	#bad_timer.wait_time = 10 - GameManager.broken_coil
+
+
 func get_score() -> int:
 	var score: int = 0
 	score += score_wheel_001.get_point()
@@ -41,8 +45,7 @@ func _break_component():
 	var electronic: Electronic = electronics.get_child(index)
 	if not electronic.broken:
 		electronic.broken = true
-		GameManager.broken_coil += 1
-
+		
 
 func _on_break_down_timer_timeout() -> void:
 	break_down_timer.wait_time = randf_range(10.0, 20.0)

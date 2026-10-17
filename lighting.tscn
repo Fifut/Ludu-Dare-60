@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bxm143hitksum"]
+
+[ext_resource type="Script" uid="uid://dgxxkxjyngfd8" path="res://lighting.gd" id="1_jihx2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r44sk"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0.9764706, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_5l758"]
+resource_local_to_scene = true
+
+[node name="LightingMesh" type="MeshInstance3D" unique_id=1077398863]
+material_override = SubResource("StandardMaterial3D_r44sk")
+cast_shadow = 0
+mesh = SubResource("ImmediateMesh_5l758")
+script = ExtResource("1_jihx2")
+
+[node name="LightingTimer" type="Timer" parent="." unique_id=408588992]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true

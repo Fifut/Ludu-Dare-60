@@ -4,7 +4,9 @@ class_name Electronic extends StaticBody3D
 @export var broken: bool:
 	set(status):
 		broken = status
+		GameManager.broken_coil += 1
 		_click_to_fix = randi_range(2, 5)
+		bad_timer.start()
 		_set_color(Color.RED)
 		
 
@@ -14,8 +16,11 @@ class_name Electronic extends StaticBody3D
 @onready var coil_mesh: MeshInstance3D = %CoilMesh
 
 @onready var click_timer: Timer = %ClickTimer
+@onready var bad_timer: Timer = %BadTimer
 
 @onready var hammer_marker: Marker3D = %HammerMarker
+
+@onready var lighting_mesh: MeshInstance3D = %LightingMesh
 
 @onready var click_audio: AudioStreamPlayer3D = %ClickAudio
 @onready var broken_audio: AudioStreamPlayer3D = %BrokenAudio
@@ -38,6 +43,7 @@ func _ready() -> void:
 		func():
 			_reset_color()
 			broken = false
+			bad_timer.stop()
 			broken_audio.stop()
 	)
 	
@@ -55,6 +61,8 @@ func _physics_process(_delta: float) -> void:
 		relay_mesh.position.y = _relay_mesh_position.y + randf_range(0.0, 0.01)
 	else:
 		relay_mesh.position = _relay_mesh_position
+		
+	broken_gpu_particles.amount_ratio = remap(bad_timer.time_left, bad_timer.wait_time, 0.0, 0.0, 1.0)
 
 
 func _set_color(color: Color):
@@ -71,7 +79,9 @@ func _reset_color():
 
 func _fixed():
 	broken = false
+	GameManager.broken_coil -= 1
 	fix_audio.play()
+	bad_timer.stop()
 	_set_color(Color.GREEN)
 	
 
@@ -91,3 +101,10 @@ func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3,
 			_click_to_fix -= 1
 			if _click_to_fix <= 0:
 				_fixed()
+
+
+func _on_bad_timer_timeout() -> void:
+	bad_timer.start()
+	lighting_mesh.start()
+	GameManager.on_malfunction_puls.emit()
+	

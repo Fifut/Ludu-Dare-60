@@ -5,11 +5,20 @@
 [ext_resource type="PackedScene" uid="uid://f7ypqae6q7xo" path="res://Pinball/Electronic/electronic.tscn" id="2_qomfy"]
 [ext_resource type="PackedScene" uid="uid://kp47jywi4cgg" path="res://Pinball/Front/score_wheel.tscn" id="3_l8ppm"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qomfy"]
+albedo_color = Color(0.13319641, 0.13319641, 0.13319638, 1)
+metallic = 0.66
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_knuud"]
+material = SubResource("StandardMaterial3D_qomfy")
+size = Vector3(0.32999998, 0.099999994, 0.13)
+
 [node name="Electronic front" unique_id=392062381 instance=ExtResource("1_hudyf")]
 script = ExtResource("2_l8ppm")
 
-[node name="Solide1" parent="." index="0" unique_id=1186744638]
-transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, -0.019889567)
+[node name="Solide1" parent="." index="0" unique_id=105725719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.019889567)
 
 [node name="Electronics" type="Node3D" parent="." index="1" unique_id=1021808428]
 unique_name_in_owner = true
@@ -17,19 +26,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07647705)
 
 [node name="Electronic1" parent="Electronics" index="0" unique_id=1712152631 instance=ExtResource("2_qomfy")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.07, -0.03, -0.025)
-broken = null
 
 [node name="Electronic2" parent="Electronics" index="1" unique_id=488459185 instance=ExtResource("2_qomfy")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.21, 0.03, -0.025)
-broken = null
 
 [node name="Electronic3" parent="Electronics" index="2" unique_id=1868328969 instance=ExtResource("2_qomfy")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.16, -0.19, -0.025)
-broken = null
 
 [node name="Electronic4" parent="Electronics" index="3" unique_id=1521213449 instance=ExtResource("2_qomfy")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.19283943, -0.22334954, -0.025)
-broken = null
 
 [node name="ScoreWeels" type="Node3D" parent="." index="2" unique_id=703707562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15787569)
@@ -42,6 +47,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20127337, 0)
 
 [node name="ScoreWheel001" parent="ScoreWeels" index="2" unique_id=806380280 instance=ExtResource("3_l8ppm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, 0.20127337, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ScoreWeels" index="3" unique_id=1111736003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0049999654, 0.19999999, -0.094999984)
+mesh = SubResource("BoxMesh_knuud")
 
 [node name="BreakDownTimer" type="Timer" parent="." index="3" unique_id=1717189609]
 unique_name_in_owner = true

@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cc36am3uy1nmy" path="res://Pinball/Bumper/bumper.tscn" id="11_k528o"]
 [ext_resource type="AudioStream" uid="uid://c6jt0yaden3w5" path="res://Assets/Sounds/relaod.wav" id="12_k3b85"]
 [ext_resource type="AudioStream" uid="uid://j6nbameve1te" path="res://Assets/Sounds/launch.wav" id="13_84y6x"]
+[ext_resource type="AudioStream" uid="uid://cb52evb1s1e0i" path="res://Assets/Sounds/hurt.wav" id="13_k528o"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_84y6x"]
 friction = 0.0
@@ -24,7 +25,7 @@ roughness = 0.48
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ut2x7"]
 transparency = 1
-albedo_color = Color(1, 1, 0, 0.7490196)
+albedo_color = Color(0, 0, 0.5294118, 0.8980392)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_knuud"]
 friction = 0.0
@@ -34,9 +35,8 @@ bounce = 0.8
 size = Vector3(0.12667847, 0.03100586, 0.042541504)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3b85"]
-albedo_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
-metallic = 0.37
-roughness = 0.22
+metallic = 1.0
+roughness = 0.48
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ut2x7"]
 bounce = 0.4
@@ -77,13 +77,30 @@ script = ExtResource("1_e78sp")
 collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_84y6x")
 
-[node name="Solide1" parent="Pinball/Front_1" parent_id_path=PackedInt32Array(1902378416, 1741133275) index="0" unique_id=67969427]
+[node name="Solide1" parent="Pinball/Front_1" parent_id_path=PackedInt32Array(1902378416, 823510112) index="0" unique_id=331026181]
 surface_material_override/0 = SubResource("StandardMaterial3D_84y6x")
 
-[node name="Solide12" parent="Pinball/Glass_1" parent_id_path=PackedInt32Array(1902378416, 839879391) index="0" unique_id=1715071719]
+[node name="Solide12" parent="Pinball/Glass_1" parent_id_path=PackedInt32Array(1902378416, 600779566) index="0" unique_id=2057553498]
 surface_material_override/0 = SubResource("StandardMaterial3D_ut2x7")
 
-[node name="StaticBody3D1" type="StaticBody3D" parent="Pinball/Playfield_1" parent_id_path=PackedInt32Array(1902378416, 1678682951) index="1" unique_id=1148895068]
+[node name="BallInPlayLabel" type="Label3D" parent="Pinball/Glass_1" parent_id_path=PackedInt32Array(1902378416, 600779566) index="1" unique_id=48548318]
+transform = Transform3D(1, -1.0779352e-30, 0, -1.0779352e-30, 1, 0, 0, 0, 1, -0.22943418, 0.0015199184, 0.0070244074)
+pixel_size = 0.001
+alpha_cut = 1
+text = "Ball
+in
+play"
+outline_size = 6
+
+[node name="BallInPlayValue" type="Label3D" parent="Pinball/Glass_1" parent_id_path=PackedInt32Array(1902378416, 600779566) index="2" unique_id=1773426937]
+unique_name_in_owner = true
+transform = Transform3D(1, -1.0779352e-30, 0, -1.0779352e-30, 1, 0, 0, 0, 1, -0.22943418, -0.0761435, 0.0070244074)
+pixel_size = 0.001
+alpha_cut = 1
+text = "0"
+outline_size = 6
+
+[node name="StaticBody3D1" type="StaticBody3D" parent="Pinball/Playfield_1" parent_id_path=PackedInt32Array(1902378416, 1202237418) index="1" unique_id=1148895068]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19014323, -1.0343566e-16, 0.37338465)
 collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_knuud")
@@ -92,7 +109,7 @@ physics_material_override = SubResource("PhysicsMaterial_knuud")
 transform = Transform3D(0.69910777, 0.04057872, -0.7138641, -0.057946064, 0.99831975, 1.1983756e-31, 0.71266454, 0.041365605, 0.7002844, 0, 0, 0)
 shape = SubResource("BoxShape3D_5l758")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="Pinball/Playfield_1" parent_id_path=PackedInt32Array(1902378416, 1678682951) index="2" unique_id=96192521]
+[node name="StaticBody3D2" type="StaticBody3D" parent="Pinball/Playfield_1" parent_id_path=PackedInt32Array(1902378416, 1202237418) index="2" unique_id=96192521]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14712319, 7.130808e-18, 0.37092394)
 collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_knuud")
@@ -101,19 +118,19 @@ physics_material_override = SubResource("PhysicsMaterial_knuud")
 transform = Transform3D(0.6985032, -0.040275436, 0.7144727, 0.05756403, 0.9983418, 0, -0.71328795, 0.04112792, 0.6996634, 0, 0, 0)
 shape = SubResource("BoxShape3D_5l758")
 
-[node name="Solide15" parent="Pinball/Foot_1" parent_id_path=PackedInt32Array(1902378416, 529611308) index="0" unique_id=259661982]
+[node name="Solide15" parent="Pinball/Foot_1" parent_id_path=PackedInt32Array(1902378416, 1206087784) index="0" unique_id=936768690]
 surface_material_override/0 = SubResource("StandardMaterial3D_k3b85")
 
-[node name="Solide16" parent="Pinball/Foot_2" parent_id_path=PackedInt32Array(1902378416, 717089147) index="0" unique_id=1274195551]
+[node name="Solide16" parent="Pinball/Foot_2" parent_id_path=PackedInt32Array(1902378416, 1725099476) index="0" unique_id=1865114122]
 surface_material_override/0 = SubResource("StandardMaterial3D_k3b85")
 
-[node name="Solide17" parent="Pinball/Foot_3" parent_id_path=PackedInt32Array(1902378416, 695100128) index="0" unique_id=821558553]
+[node name="Solide17" parent="Pinball/Foot_3" parent_id_path=PackedInt32Array(1902378416, 1002352536) index="0" unique_id=90131804]
 surface_material_override/0 = SubResource("StandardMaterial3D_k3b85")
 
-[node name="Solide18" parent="Pinball/Foot_4" parent_id_path=PackedInt32Array(1902378416, 1073504428) index="0" unique_id=587402362]
+[node name="Solide18" parent="Pinball/Foot_4" parent_id_path=PackedInt32Array(1902378416, 166373736) index="0" unique_id=910863149]
 surface_material_override/0 = SubResource("StandardMaterial3D_k3b85")
 
-[node name="Flipper_1" parent="Pinball" index="8" unique_id=597812234]
+[node name="Flipper_1" parent="Pinball" index="8" unique_id=238606431]
 transform = Transform3D(0.99804485, -4.656613e-10, -0.0625, -0.004794939, 0.9970528, -0.07656904, 0.062315796, 0.07671902, 0.9951035, -0.155, 0.91901493, -0.13964634)
 collision_layer = 2
 collision_mask = 16
@@ -133,7 +150,7 @@ unique_name_in_owner = true
 transform = Transform3D(1.0000001, 9.313226e-10, 0, 0, 1.0000001, 7.450581e-09, 0, 0, 1, -0.0003517866, 0.07, 0)
 stream = ExtResource("5_n4d2f")
 
-[node name="Flipper_2" parent="Pinball" index="9" unique_id=60544319]
+[node name="Flipper_2" parent="Pinball" index="9" unique_id=1369596501]
 transform = Transform3D(-0.99804485, 6.0535967e-09, -0.06250007, -0.004794939, 0.9970528, 0.076569036, 0.06231587, 0.07671902, -0.9951034, 0.075, 0.91901493, -0.13964634)
 collision_layer = 2
 collision_mask = 16
@@ -153,17 +170,17 @@ unique_name_in_owner = true
 transform = Transform3D(-0.9921877, 5.5879354e-09, 0.124755755, 5.122274e-09, 1.0000001, 7.450581e-09, -0.12475575, 0, -0.99218774, -0.00022710115, 0.07, 0.0036265552)
 stream = ExtResource("8_k528o")
 
-[node name="Electronic playfield" parent="Pinball/Electronic playfield_1" parent_id_path=PackedInt32Array(1902378416, 2081766536) index="1" unique_id=221682441 instance=ExtResource("3_7dlyx")]
+[node name="Electronic playfield" parent="Pinball/Electronic playfield_1" parent_id_path=PackedInt32Array(1902378416, 1827764636) index="1" unique_id=221682441 instance=ExtResource("3_7dlyx")]
 unique_name_in_owner = true
 
-[node name="Electronic front" parent="Pinball/Electronic front_1" parent_id_path=PackedInt32Array(1902378416, 371794553) index="1" unique_id=392062381 instance=ExtResource("4_7dlyx")]
+[node name="Electronic front" parent="Pinball/Electronic front_1" parent_id_path=PackedInt32Array(1902378416, 157361147) index="1" unique_id=392062381 instance=ExtResource("4_7dlyx")]
 unique_name_in_owner = true
 
-[node name="Bumper_1" parent="Pinball" index="12" unique_id=1750247290]
+[node name="Bumper_1" parent="Pinball" index="12" unique_id=299212517]
 collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_k3b85")
 
-[node name="Solide113" parent="Pinball/Bumper_1" index="0" unique_id=572179355]
+[node name="Solide113" parent="Pinball/Bumper_1" index="0" unique_id=547771572]
 surface_material_override/0 = SubResource("StandardMaterial3D_pu03q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pinball/Bumper_1" index="1" unique_id=1685443726]
@@ -173,11 +190,11 @@ shape = SubResource("ConcavePolygonShape3D_k528o")
 [node name="Bumper" parent="Pinball/Bumper_1" index="2" unique_id=1999056922 instance=ExtResource("11_k528o")]
 transform = Transform3D(1.0000004, 1.1175871e-08, 2.9802322e-08, 0, 1.0000005, 0, 1.1920929e-07, 1.1175871e-08, 1, 0, 0, 0)
 
-[node name="Bumper_2" parent="Pinball" index="13" unique_id=758399666]
+[node name="Bumper_2" parent="Pinball" index="13" unique_id=890449102]
 collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_k3b85")
 
-[node name="Solide114" parent="Pinball/Bumper_2" index="0" unique_id=1638723567]
+[node name="Solide114" parent="Pinball/Bumper_2" index="0" unique_id=568946624]
 surface_material_override/0 = SubResource("StandardMaterial3D_pu03q")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Pinball/Bumper_2" index="1" unique_id=988282919]
@@ -186,11 +203,11 @@ shape = SubResource("ConcavePolygonShape3D_k528o")
 
 [node name="Bumper" parent="Pinball/Bumper_2" index="2" unique_id=2014026371 instance=ExtResource("11_k528o")]
 
-[node name="Bumper_3" parent="Pinball" index="14" unique_id=205189656]
+[node name="Bumper_3" parent="Pinball" index="14" unique_id=1422974358]
 collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_k3b85")
 
-[node name="Solide115" parent="Pinball/Bumper_3" index="0" unique_id=690951698]
+[node name="Solide115" parent="Pinball/Bumper_3" index="0" unique_id=222379454]
 surface_material_override/0 = SubResource("StandardMaterial3D_pu03q")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Pinball/Bumper_3" index="1" unique_id=679488167]
@@ -199,11 +216,11 @@ shape = SubResource("ConcavePolygonShape3D_k528o")
 
 [node name="Bumper" parent="Pinball/Bumper_3" index="2" unique_id=266143926 instance=ExtResource("11_k528o")]
 
-[node name="Bumper_4" parent="Pinball" index="15" unique_id=1471368159]
+[node name="Bumper_4" parent="Pinball" index="15" unique_id=1238160162]
 collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_k3b85")
 
-[node name="Solide116" parent="Pinball/Bumper_4" index="0" unique_id=1579340961]
+[node name="Solide116" parent="Pinball/Bumper_4" index="0" unique_id=2048737203]
 surface_material_override/0 = SubResource("StandardMaterial3D_pu03q")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Pinball/Bumper_4" index="1" unique_id=818365412]
@@ -212,11 +229,11 @@ shape = SubResource("ConcavePolygonShape3D_k528o")
 
 [node name="Bumper" parent="Pinball/Bumper_4" index="2" unique_id=2095090924 instance=ExtResource("11_k528o")]
 
-[node name="Bumper_5" parent="Pinball" index="16" unique_id=1408252990]
+[node name="Bumper_5" parent="Pinball" index="16" unique_id=817025680]
 collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_k3b85")
 
-[node name="Solide117" parent="Pinball/Bumper_5" index="0" unique_id=1649808182]
+[node name="Solide117" parent="Pinball/Bumper_5" index="0" unique_id=1474504261]
 surface_material_override/0 = SubResource("StandardMaterial3D_pu03q")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="Pinball/Bumper_5" index="1" unique_id=287890610]
@@ -256,6 +273,10 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0036499202, -0.010693133, 0.0038573295)
 shape = SubResource("BoxShape3D_r44sk")
 
+[node name="PlayerMarker" type="Marker3D" parent="." unique_id=2009671663]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.660056, 1.0590503)
+
 [node name="Cameras" type="Node3D" parent="." unique_id=2087920779]
 unique_name_in_owner = true
 script = ExtResource("6_6ltt8")
@@ -270,7 +291,7 @@ current = true
 
 [node name="PlayerCamera" type="Camera3D" parent="Cameras" unique_id=491274703]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.7029169, 0.71127206, 0, -0.71127206, 0.7029169, 0, 3.2066045, 1.259082)
+transform = Transform3D(1, 0, 0, 0, 0.7029169, 0.71127206, 0, -0.71127206, 0.7029169, 0, 3.2066045, 1.3074455)
 fov = 30.0
 
 [node name="PlayfieldCamera" type="Camera3D" parent="Cameras" unique_id=618926433]
@@ -291,6 +312,12 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LoseArea" unique_id=63122301]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.024392098, 0, 0.010058593)
 shape = SubResource("BoxShape3D_knuud")
+
+[node name="HurtAudio" type="AudioStreamPlayer3D" parent="." unique_id=523109036]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018424153, 1.1898193, -0.40283066)
+stream = ExtResource("13_k528o")
+volume_db = 3.0
 
 [connection signal="finished" from="SpawnBallMarker/BallLaodingAudio" to="." method="_on_ball_laoding_audio_finished"]
 [connection signal="body_entered" from="LoseArea" to="." method="_on_lose_area_body_entered"]

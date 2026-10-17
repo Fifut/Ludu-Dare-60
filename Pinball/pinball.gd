@@ -24,8 +24,11 @@ signal on_game_over(score: int)
 @onready var right_flipper_on_audio: AudioStreamPlayer3D = %RightFlipperOnAudio
 @onready var right_flipper_off_audio: AudioStreamPlayer3D = %RightFlipperOffAudio
 
+@onready var ball_in_play_value: Label3D = %BallInPlayValue
 
-#@onready var electronic_playfield: Node3D = %"Electronic playfield"
+@onready var hurt_audio: AudioStreamPlayer3D = %HurtAudio
+
+@onready var player_marker: Marker3D = %PlayerMarker
 
 const BALL = preload("uid://cvxwk8nmkb0rn")
 
@@ -41,6 +44,8 @@ func _ready() -> void:
 	flipper_1.rotation_degrees.y = _left_flip_target
 	flipper_2.rotation_degrees.y = _right_flip_target
 	
+	GameManager.current_camera = player_marker
+	
 	GameManager.on_game_start.connect(
 		func():
 			_play = true
@@ -50,15 +55,15 @@ func _ready() -> void:
 			cameras.switch_to(PinballCamera.CAMERA.PLAYER)
 	)
 	
-	GameManager.on_game_stop.connect(
+	GameManager.on_malfunction_puls.connect(
 		func():
-			_play = false
-			cameras.switch_to(PinballCamera.CAMERA.IDLE)
-			on_game_over.emit(electronic_front.get_score())
+			hurt_audio.play()
 	)
 	
 
 func _process(_delta: float) -> void:
+	
+	ball_in_play_value.text = str(_ball_in_play)
 	
 	if not _play:
 		return
@@ -105,13 +110,13 @@ func _process(_delta: float) -> void:
 	flipper_1.rotation.y = lerp_angle(
 		deg_to_rad(flipper_1.global_rotation_degrees.y),
 		deg_to_rad(_left_flip_target),
-		remap(GameManager.broken_coil, 0, 10, 0.2, 0.001)
+		0.4
 		)
 		
 	flipper_2.rotation.y = lerp_angle(
 		deg_to_rad(flipper_2.global_rotation_degrees.y),
 		deg_to_rad(_right_flip_target),
-		remap(GameManager.broken_coil, 0, 10, 0.2, 0.001)
+		0.4
 		)
 
 	# Launcher
@@ -123,6 +128,7 @@ func _process(_delta: float) -> void:
 
 func start():
 	_play = true
+	_ball_in_play = 4
 	ball_laoding_audio.play()
 	playfield.show()
 	glass.show()

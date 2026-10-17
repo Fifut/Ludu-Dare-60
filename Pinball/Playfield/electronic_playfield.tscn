@@ -14,16 +14,26 @@ transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, -0.02, 0)
 unique_name_in_owner = true
 
 [node name="Electronic1" parent="Electronics" index="0" unique_id=1712152631 instance=ExtResource("3_v6a2x")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.1, 0.05, -0.2)
 
 [node name="Electronic2" parent="Electronics" index="1" unique_id=2033845912 instance=ExtResource("3_v6a2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
-broken = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.1, 0.05, 0.3)
 
 [node name="Electronic3" parent="Electronics" index="2" unique_id=1344165445 instance=ExtResource("3_v6a2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0.2)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.1, 0.05, 0.1)
+
+[node name="Electronic4" parent="Electronics" index="3" unique_id=1957044233 instance=ExtResource("3_v6a2x")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.15, 0.05, -0.1)
+
+[node name="Electronic5" parent="Electronics" index="4" unique_id=117601541 instance=ExtResource("3_v6a2x")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.1, 0.05, 0.3)
+
+[node name="Electronic6" parent="Electronics" index="5" unique_id=973791471 instance=ExtResource("3_v6a2x")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.14, 0.05, 0.049999997)
 
 [node name="BreakDownTimer" type="Timer" parent="." index="2" unique_id=7929312]
 unique_name_in_owner = true
+wait_time = 20.0
 autostart = true
 
 [connection signal="timeout" from="BreakDownTimer" to="." method="_on_break_down_timer_timeout"]

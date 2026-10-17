@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://blx3gi1awa144" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://chgl37vkb543g" path="res://Pinball/pinball.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bi7j5unaluhb3" path="res://Hammer/hammer.tscn" id="3_h2yge"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -69,17 +70,29 @@ mesh = SubResource("PlaneMesh_5l758")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.0370488, 2.5, -1.6488168)
 mesh = SubResource("PlaneMesh_5l758")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="World" unique_id=444898706]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28716373, 3.843058, 1.0270019)
+[node name="OmniLight3D1" type="OmniLight3D" parent="World" unique_id=444898706]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28716373, 1.7406082, 0.51133406)
 light_energy = 2.0
 shadow_enabled = true
-omni_range = 10.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="World" unique_id=212455777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0037798882, 0.4590702, -0.6560221)
+light_color = Color(0.2600161, 0.47939676, 1, 1)
+shadow_enabled = true
+shadow_bias = 0.0
+omni_range = 3.0
 
 [node name="Pinball" parent="." unique_id=1882199687 instance=ExtResource("1_ig7tw")]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00028665364)
 
-[node name="UI" type="Control" parent="." unique_id=356758208]
-visible = false
+[node name="Hammer" parent="." unique_id=273088591 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1.4715377e-15, 4.371139e-08, -1, 0.991825, 0.1276054, 5.577812e-09, 0.1276054, -0.991825, -4.335405e-08, 0.24069369, 1.0206671, -0.3851104)
+
+[node name="MenuCanvasLayer" type="CanvasLayer" parent="." unique_id=2147325186]
+unique_name_in_owner = true
+
+[node name="Menu" type="Control" parent="MenuCanvasLayer" unique_id=356758208]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,22 +100,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1927254169]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="StartButton" type="Button" parent="UI/VBoxContainer" unique_id=1797793119]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Start"
-
-[node name="BackgroundColor" type="ColorRect" parent="UI" unique_id=1608604327]
+[node name="BackgroundColor" type="ColorRect" parent="MenuCanvasLayer/Menu" unique_id=1608604327]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,4 +109,19 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.39215687)
 
-[connection signal="pressed" from="UI/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuCanvasLayer/Menu" unique_id=1927254169]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="StartButton" type="Button" parent="MenuCanvasLayer/Menu/VBoxContainer" unique_id=1797793119]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Start"
+
+[connection signal="pressed" from="MenuCanvasLayer/Menu/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

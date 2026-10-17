@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://kp47jywi4cgg"]
 
+[ext_resource type="Script" uid="uid://c67xhoa7ch5af" path="res://Pinball/Front/score_wheel.gd" id="1_0nlxc"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5l758"]
 albedo_color = Color(0, 0, 0, 1)
 metallic = 0.58
@@ -7,17 +9,20 @@ roughness = 0.28
 
 [sub_resource type="BoxMesh" id="BoxMesh_knuud"]
 material = SubResource("StandardMaterial3D_5l758")
-size = Vector3(0.05, 0.07, 0.02)
+size = Vector3(0.05, 0.07, 0.15487549)
 
 [sub_resource type="SystemFont" id="SystemFont_ia8el"]
+subpixel_positioning = 0
 
 [node name="ScoreWheel" type="Node3D" unique_id=591217884]
+script = ExtResource("1_0nlxc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1326298759]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.07743774)
 mesh = SubResource("BoxMesh_knuud")
 
-[node name="Label3D" type="Label3D" parent="." unique_id=2039583523]
+[node name="NumLabel" type="Label3D" parent="." unique_id=2039583523]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0030146986, 0.001)
 pixel_size = 0.001
 text = "0"

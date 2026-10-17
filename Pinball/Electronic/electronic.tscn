@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://f7ypqae6q7xo"]
 
 [ext_resource type="Script" uid="uid://y18ota7ir3e2" path="res://Pinball/Electronic/electronic.gd" id="1_2lrt6"]
-[ext_resource type="AudioStream" uid="uid://cjq81eg6lydas" path="res://Assets/coil.wav" id="2_8585l"]
+[ext_resource type="AudioStream" uid="uid://dswg87hdylty2" path="res://Assets/Sounds/hammer.wav" id="2_2m5bx"]
+[ext_resource type="AudioStream" uid="uid://cjq81eg6lydas" path="res://Assets/Sounds/coil.wav" id="2_8585l"]
+[ext_resource type="AudioStream" uid="uid://bqg820o20ag2a" path="res://Assets/Sounds/fix.wav" id="4_pgkgt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6ii5"]
 albedo_color = Color(0.31061712, 0.31061712, 0.3106171, 1)
@@ -11,8 +13,17 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_t6ii5")
 size = Vector3(0.1, 0.1, 0.1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2m5bx"]
+albedo_color = Color(0.40700558, 0.32902393, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5l758"]
+material = SubResource("StandardMaterial3D_2m5bx")
+top_radius = 0.029785156
+bottom_radius = 0.029785156
+height = 0.11
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_knuud"]
-size = Vector3(0.1, 0.1, 0.1)
+size = Vector3(0.14, 0.13, 0.11)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_knuud"]
 emission_shape = 3
@@ -38,16 +49,26 @@ size = Vector2(0.01, 0.01)
 orientation = 2
 
 [node name="Electronic" type="StaticBody3D" unique_id=1712152631]
+collision_mask = 0
 script = ExtResource("1_2lrt6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1176892843]
+[node name="RelayMesh" type="MeshInstance3D" parent="." unique_id=1176892843]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.049874485, 0)
 mesh = SubResource("BoxMesh_knuud")
 
+[node name="CoilMesh" type="MeshInstance3D" parent="RelayMesh" unique_id=309116252]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.0001255162, 0)
+mesh = SubResource("CylinderMesh_5l758")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1913162127]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.050018385, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0134375, 0.050170973, 0.00041504204)
 shape = SubResource("BoxShape3D_knuud")
+
+[node name="HammerMarker" type="Marker3D" parent="." unique_id=419433831]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.047833517, -0.055615034)
 
 [node name="BrokenGPUParticles" type="GPUParticles3D" parent="." unique_id=1188604213]
 unique_name_in_owner = true
@@ -60,10 +81,16 @@ draw_pass_1 = SubResource("PlaneMesh_5l758")
 
 [node name="ClickAudio" type="AudioStreamPlayer3D" parent="." unique_id=596150069]
 unique_name_in_owner = true
+stream = ExtResource("2_2m5bx")
 
 [node name="BrokenAudio" type="AudioStreamPlayer3D" parent="." unique_id=2140373214]
 unique_name_in_owner = true
 stream = ExtResource("2_8585l")
+volume_db = -15.0
+
+[node name="FixAudio" type="AudioStreamPlayer3D" parent="." unique_id=1830947851]
+unique_name_in_owner = true
+stream = ExtResource("4_pgkgt")
 
 [node name="ClickTimer" type="Timer" parent="." unique_id=1605417976]
 unique_name_in_owner = true
@@ -71,4 +98,4 @@ wait_time = 0.2
 one_shot = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="timeout" from="ClickTimer" to="." method="_on_click_timer_timeout"]
+[connection signal="finished" from="FixAudio" to="." method="_on_fix_audio_finished"]

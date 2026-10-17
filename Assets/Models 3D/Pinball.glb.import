@@ -41,6 +41,21 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "nodes": {
+"PATH:Bumper_1": {
+"node/node_type": "AnimatableBody3D"
+},
+"PATH:Bumper_2": {
+"node/node_type": "AnimatableBody3D"
+},
+"PATH:Bumper_3": {
+"node/node_type": "AnimatableBody3D"
+},
+"PATH:Bumper_4": {
+"node/node_type": "AnimatableBody3D"
+},
+"PATH:Bumper_5": {
+"node/node_type": "AnimatableBody3D"
+},
 "PATH:Flipper_1": {
 "node/node_type": "AnimatableBody3D"
 },

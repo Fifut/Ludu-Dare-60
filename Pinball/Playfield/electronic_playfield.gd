@@ -11,6 +11,6 @@ func _break_component():
 
 
 func _on_break_down_timer_timeout() -> void:
-	break_down_timer.wait_time = randf_range(5.0, 10.0)
+	break_down_timer.wait_time = randf_range(10.0, 20.0)
 	_break_component()
 	

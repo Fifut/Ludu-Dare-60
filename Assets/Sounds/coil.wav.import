@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cjq81eg6lydas"
-path="res://.godot/imported/coil.wav-2c700d659d3ddb006d535ea872a87235.sample"
+path="res://.godot/imported/coil.wav-a2a61ef854c136ccbcf7c047c14be6d8.sample"
 
 [deps]
 
-source_file="res://Assets/coil.wav"
-dest_files=["res://.godot/imported/coil.wav-2c700d659d3ddb006d535ea872a87235.sample"]
+source_file="res://Assets/Sounds/coil.wav"
+dest_files=["res://.godot/imported/coil.wav-a2a61ef854c136ccbcf7c047c14be6d8.sample"]
 
 [params]
 

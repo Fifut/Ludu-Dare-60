@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://ber3d6shcmi7q" path="res://Pinball/Ball/ball.gd" id="1_x8fbi"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_knuud"]
-radius = 0.02
-height = 0.04
+radius = 0.015
+height = 0.03
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_knuud"]
-radius = 0.02
+radius = 0.015
 
 [node name="Ball" type="RigidBody3D" unique_id=1864914457]
 collision_layer = 16

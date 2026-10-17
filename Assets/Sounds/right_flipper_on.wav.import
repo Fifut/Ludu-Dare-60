@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cfmxg7w5b46vv"
-path="res://.godot/imported/right_flipper_on.wav-538941d99b05a6c1e96957295e76a826.sample"
+path="res://.godot/imported/right_flipper_on.wav-91e2e34f7f9916bcebc3883164aee8ae.sample"
 
 [deps]
 
-source_file="res://Assets/right_flipper_on.wav"
-dest_files=["res://.godot/imported/right_flipper_on.wav-538941d99b05a6c1e96957295e76a826.sample"]
+source_file="res://Assets/Sounds/right_flipper_on.wav"
+dest_files=["res://.godot/imported/right_flipper_on.wav-91e2e34f7f9916bcebc3883164aee8ae.sample"]
 
 [params]
 

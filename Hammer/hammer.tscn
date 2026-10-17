@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bi7j5unaluhb3"]
+
+[ext_resource type="PackedScene" uid="uid://cl6um1bcj0qgo" path="res://Assets/Models 3D/Hammer.glb" id="1_yhg8v"]
+[ext_resource type="Script" uid="uid://dy3thudq8vipj" path="res://Hammer/hammer.gd" id="2_yuxlt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
+albedo_color = Color(0.2780577, 0.11028422, 6.016344e-08, 1)
+
+[node name="Hammer" unique_id=273088591 instance=ExtResource("1_yhg8v")]
+script = ExtResource("2_yuxlt")
+
+[node name="Solide1" parent="." index="0" unique_id=839484038]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, -0.22, -0.049893335)
+surface_material_override/1 = SubResource("StandardMaterial3D_1bvp3")

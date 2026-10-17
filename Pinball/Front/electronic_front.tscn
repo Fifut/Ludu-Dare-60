@@ -17,15 +17,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07647705)
 
 [node name="Electronic1" parent="Electronics" index="0" unique_id=1712152631 instance=ExtResource("2_qomfy")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.07, -0.03, -0.025)
+broken = null
 
 [node name="Electronic2" parent="Electronics" index="1" unique_id=488459185 instance=ExtResource("2_qomfy")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.21, 0.03, -0.025)
+broken = null
 
 [node name="Electronic3" parent="Electronics" index="2" unique_id=1868328969 instance=ExtResource("2_qomfy")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.16, -0.19, -0.025)
+broken = null
 
 [node name="Electronic4" parent="Electronics" index="3" unique_id=1521213449 instance=ExtResource("2_qomfy")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.19283943, -0.22334954, -0.025)
+broken = null
 
 [node name="ScoreWeels" type="Node3D" parent="." index="2" unique_id=703707562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15787569)

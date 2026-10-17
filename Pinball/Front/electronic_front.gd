@@ -16,6 +16,24 @@ func _ready() -> void:
 		func():
 			score_wheel_001.add_point()
 	)
+	
+	GameManager.on_game_start.connect(
+		func():
+			break_down_timer.start()
+	)
+	
+	GameManager.on_game_stop.connect(
+		func():
+			break_down_timer.stop()
+	)
+
+
+func get_score() -> int:
+	var score: int = 0
+	score += score_wheel_001.get_point()
+	score += score_wheel_010.get_point() * 10
+	score += score_wheel_100.get_point() * 100
+	return score
 
 
 func _break_component():

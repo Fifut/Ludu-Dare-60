@@ -1,5 +1,7 @@
 extends Node
 
+signal on_game_start()
+signal on_game_stop()
 
 signal on_add_point()
 

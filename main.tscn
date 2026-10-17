@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://blx3gi1awa144" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://chgl37vkb543g" path="res://Pinball/pinball.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://d4qyndcxevhg" path="res://Assets/Models 3D/toolbox.glb" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bi7j5unaluhb3" path="res://Hammer/hammer.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cl6um1bcj0qgo" path="res://Assets/Models 3D/Hammer.glb" id="3_lquwl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -14,6 +16,15 @@ sky_material = SubResource("ProceduralSkyMaterial_7dm0k")
 [sub_resource type="Environment" id="Environment_0xm2m"]
 background_mode = 2
 sky = SubResource("Sky_ig7tw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_knuud"]
+albedo_color = Color(0.32941177, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.32941177, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_knuud"]
+material = SubResource("StandardMaterial3D_knuud")
+size = Vector3(2.8, 0.8, 0.08)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sdgyq"]
 seed = 5
@@ -53,10 +64,23 @@ environment = SubResource("Environment_0xm2m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=962082841]
 transform = Transform3D(0.8660254, -0.43301272, 0.24999999, 0, 0.49999997, 0.86602545, -0.5, -0.75, 0.43301266, 0, 10, 0)
-visible = false
 shadow_enabled = true
+shadow_bias = 0.0
+shadow_blur = 1.5
+directional_shadow_max_distance = 40.0
 
 [node name="World" type="Node3D" parent="." unique_id=1076439096]
+
+[node name="TitleMesh" type="MeshInstance3D" parent="World" unique_id=1018617847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1386245, 1.7914035, -2.662344)
+mesh = SubResource("BoxMesh_knuud")
+
+[node name="TitleLabel" type="Label3D" parent="World/TitleMesh" unique_id=1764084665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+text = "Pinball \"Repair\"
+SIMULATOR"
+font_size = 64
+outline_size = 6
 
 [node name="FloorMesh" type="MeshInstance3D" parent="World" unique_id=1743783986]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
@@ -71,7 +95,8 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.0
 mesh = SubResource("PlaneMesh_5l758")
 
 [node name="OmniLight3D1" type="OmniLight3D" parent="World" unique_id=444898706]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28716373, 1.7406082, 0.51133406)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28716373, 2.2961102, -0.4607947)
+visible = false
 light_energy = 2.0
 shadow_enabled = true
 
@@ -82,11 +107,45 @@ shadow_enabled = true
 shadow_bias = 0.0
 omni_range = 3.0
 
+[node name="toolbox" parent="World" unique_id=801821546 instance=ExtResource("2_1bvp3")]
+transform = Transform3D(0.93492347, 0, -0.35484943, 0, 1, 0, 0.35484943, 0, 0.93492347, 0.9282208, 0.005889721, -0.7161026)
+
+[node name="Hammer1" parent="World/toolbox" unique_id=273088591 instance=ExtResource("3_lquwl")]
+transform = Transform3D(0.17798787, -0.3128504, -0.9329765, 0.98365587, 0.08280262, 0.15989038, 0.027231097, -0.94618624, 0.322475, -0.056213368, 0.29059085, -0.05432866)
+
+[node name="Hammer2" parent="World/toolbox" unique_id=1334171072 instance=ExtResource("3_lquwl")]
+transform = Transform3D(0.8316135, -0.5489443, -0.0841382, 0.50448334, 0.81006044, -0.29882875, 0.23219737, 0.20606372, 0.95059043, 0.04164731, 0.14466727, 0.18556501)
+
+[node name="Hammer3" parent="World/toolbox" unique_id=915874530 instance=ExtResource("3_lquwl")]
+transform = Transform3D(0.9575589, -0.24238133, 0.15598804, -0.22153881, -0.9650986, -0.13966037, 0.18439496, 0.09917562, -0.97783566, 0.051766813, 0.28768608, 0.0028582811)
+
+[node name="Hammer4" parent="World/toolbox" unique_id=6914632 instance=ExtResource("3_lquwl")]
+transform = Transform3D(0.037124936, -0.78003323, 0.6246358, 0.99886924, 0.047540247, 2.6077032e-08, -0.029695364, 0.6239295, 0.7809162, 0.36496952, 0.004676532, -0.11563269)
+
+[node name="Hammer5" parent="World/toolbox" unique_id=320203195 instance=ExtResource("3_lquwl")]
+transform = Transform3D(0.48332056, -0.12531754, 0.8664276, 0.8752598, 0.08944503, -0.47531044, -0.017932933, 0.98807645, 0.152916, 0.14381738, 0.22052781, -0.1359432)
+
 [node name="Pinball" parent="." unique_id=1882199687 instance=ExtResource("1_ig7tw")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00028665364)
 
-[node name="Hammer" parent="." unique_id=273088591 instance=ExtResource("3_h2yge")]
+[node name="KeysLabel" type="Label3D" parent="Pinball" unique_id=1075053631]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0.3013994, 0.76652, -0.2859664)
+pixel_size = 0.002
+shaded = true
+text = "A -> Left flipper
+D -> Right flipper
+
+W -> Scoring \"repair\" view
+S -> Playfield \"repair\" view
+
+Space -> Ball launch
+
+Left click -> \"Repair\""
+outline_size = 8
+horizontal_alignment = 0
+
+[node name="Hammer" parent="." unique_id=285764542 instance=ExtResource("3_h2yge")]
 transform = Transform3D(1.4715377e-15, 4.371139e-08, -1, 0.991825, 0.1276054, 5.577812e-09, 0.1276054, -0.991825, -4.335405e-08, 0.24069369, 1.0206671, -0.3851104)
 
 [node name="MenuCanvasLayer" type="CanvasLayer" parent="." unique_id=2147325186]
@@ -100,28 +159,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackgroundColor" type="ColorRect" parent="MenuCanvasLayer/Menu" unique_id=1608604327]
-layout_mode = 1
+[node name="MarginContainer" type="MarginContainer" parent="MenuCanvasLayer" unique_id=1583083979]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.39215687)
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuCanvasLayer/Menu" unique_id=1927254169]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuCanvasLayer/MarginContainer" unique_id=1927254169]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+offset_transform_position = Vector2(2.075, 0)
+theme_override_constants/separation = 20
 alignment = 1
 
-[node name="StartButton" type="Button" parent="MenuCanvasLayer/Menu/VBoxContainer" unique_id=1797793119]
+[node name="StartButton" type="Button" parent="MenuCanvasLayer/MarginContainer/VBoxContainer" unique_id=1797793119]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Start"
 
-[connection signal="pressed" from="MenuCanvasLayer/Menu/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[node name="QuitButton" type="Button" parent="MenuCanvasLayer/MarginContainer/VBoxContainer" unique_id=242718471]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"
+
+[connection signal="on_game_over" from="Pinball" to="." method="_on_pinball_on_game_over"]
+[connection signal="pressed" from="MenuCanvasLayer/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuCanvasLayer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_start_button_pressed"]

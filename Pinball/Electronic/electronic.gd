@@ -4,7 +4,7 @@ class_name Electronic extends StaticBody3D
 @export var broken: bool:
 	set(status):
 		broken = status
-		_click_to_fix = randi_range(1, 3)
+		_click_to_fix = randi_range(2, 5)
 		_set_color(Color.RED)
 		
 
@@ -22,12 +22,24 @@ class_name Electronic extends StaticBody3D
 @onready var fix_audio: AudioStreamPlayer3D = %FixAudio
 
 
-var _click_to_fix: int = 2
+var _click_to_fix: int = 3
 var _relay_mesh_position: Vector3
 
 
 func _ready() -> void:
 	_relay_mesh_position = relay_mesh.position
+	
+	#GameManager.on_game_start.connect(
+		#func():
+			#pass
+	#)
+	
+	GameManager.on_game_stop.connect(
+		func():
+			_reset_color()
+			broken = false
+			broken_audio.stop()
+	)
 	
 	
 func _physics_process(_delta: float) -> void:
@@ -69,24 +81,13 @@ func _on_fix_audio_finished() -> void:
 
 func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
-		GameManager.on_relay_click.emit(hammer_marker.global_transform)
-		
-		click_audio.pitch_scale = randf_range(0.9, 1.1)
-		click_audio.play()
-	
-		click_timer.start()
-		
 		if broken:
+			GameManager.on_relay_click.emit(hammer_marker.global_transform)
+		
+			click_audio.pitch_scale = randf_range(0.9, 1.1)
+			click_audio.play()
+			click_timer.start()
+		
 			_click_to_fix -= 1
-			
 			if _click_to_fix <= 0:
 				_fixed()
-				
-	#if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		#var camera: Camera3D = get_viewport().get_camera_3d()
-		#var origin: Vector3 = camera.project_ray_origin(event.position)
-		#var end: Vector3 = origin + camera.project_ray_normal(event.position) * 1000.0
-		#var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(origin, end)
-		#var result: Dictionary = get_world_3d().direct_space_state.intersect_ray(query)
-		#if result and result.collider == self:
-			#print("Clic sur le mesh")

@@ -14,6 +14,10 @@ func _process(_delta: float) -> void:
 	num_label.text = str(_scrore)
 
 
+func get_point() -> int:
+	return _scrore
+
+
 func add_point(point: int = 1):
 	_scrore += point
 	

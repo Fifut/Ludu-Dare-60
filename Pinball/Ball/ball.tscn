@@ -2,7 +2,12 @@
 
 [ext_resource type="Script" uid="uid://ber3d6shcmi7q" path="res://Pinball/Ball/ball.gd" id="1_x8fbi"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0nlxc"]
+metallic = 1.0
+roughness = 0.1
+
 [sub_resource type="SphereMesh" id="SphereMesh_knuud"]
+material = SubResource("StandardMaterial3D_0nlxc")
 radius = 0.015
 height = 0.03
 

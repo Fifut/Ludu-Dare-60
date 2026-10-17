@@ -1,11 +1,7 @@
 extends Node3D
 
 
-@onready var pinball: Pinball = %Pinball
 @onready var menu_canvas_layer: CanvasLayer = %MenuCanvasLayer
-
-
-@onready var start_button: Button = %StartButton
 
 
 func _ready() -> void:
@@ -13,5 +9,10 @@ func _ready() -> void:
 
 
 func _on_start_button_pressed() -> void:
-	pinball.start()
+	GameManager.on_game_start.emit()
 	menu_canvas_layer.hide()
+
+
+func _on_pinball_on_game_over(score: int) -> void:
+	GameManager.on_game_stop.emit()
+	menu_canvas_layer.show()

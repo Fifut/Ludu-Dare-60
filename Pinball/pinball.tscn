@@ -3,12 +3,10 @@
 [ext_resource type="Script" uid="uid://b2gfqgbndg4y3" path="res://Pinball/pinball.gd" id="1_e78sp"]
 [ext_resource type="PackedScene" uid="uid://cnuvvduyjrm54" path="res://Assets/Models 3D/Pinball.glb" id="2_48gu3"]
 [ext_resource type="PackedScene" uid="uid://bpophyon6amod" path="res://Pinball/Playfield/electronic_playfield.tscn" id="3_7dlyx"]
-[ext_resource type="Script" uid="uid://cwbtd2iw2odj0" path="res://Pinball/flipper_1.gd" id="3_go4m7"]
 [ext_resource type="PackedScene" uid="uid://1oedwje20772" path="res://Pinball/Front/electronic_front.tscn" id="4_7dlyx"]
 [ext_resource type="AudioStream" uid="uid://dte4t8sd36ofj" path="res://Assets/Sounds/left_flipper_on.wav" id="4_jliil"]
 [ext_resource type="AudioStream" uid="uid://p44xa52grbn4" path="res://Assets/Sounds/left_flipper_off.wav" id="5_n4d2f"]
 [ext_resource type="Script" uid="uid://34ktgv2kf1a7" path="res://Pinball/cameras.gd" id="6_6ltt8"]
-[ext_resource type="Script" uid="uid://btj66yh83lp26" path="res://Pinball/flipper_2.gd" id="6_jliil"]
 [ext_resource type="AudioStream" uid="uid://cfmxg7w5b46vv" path="res://Assets/Sounds/right_flipper_on.wav" id="7_fhbxo"]
 [ext_resource type="AudioStream" uid="uid://vkf32hlgfdjw" path="res://Assets/Sounds/right_flipper_off.wav" id="8_k528o"]
 [ext_resource type="PackedScene" uid="uid://cc36am3uy1nmy" path="res://Pinball/Bumper/bumper.tscn" id="11_k528o"]
@@ -120,7 +118,6 @@ transform = Transform3D(0.99804485, -4.656613e-10, -0.0625, -0.004794939, 0.9970
 collision_layer = 2
 collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_ut2x7")
-script = ExtResource("3_go4m7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pinball/Flipper_1" index="1" unique_id=1777912010]
 transform = Transform3D(0.01, 0, 0, 0, 0.010000002, 0, 0, 0, 0.010000001, 0, 0, 0)
@@ -141,7 +138,6 @@ transform = Transform3D(-0.99804485, 6.0535967e-09, -0.06250007, -0.004794939, 0
 collision_layer = 2
 collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_ut2x7")
-script = ExtResource("6_jliil")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pinball/Flipper_2" index="1" unique_id=101579926]
 transform = Transform3D(0.01, 0, 0, 0, 0.010000001, 0, 0, 0, 0.010000001, 0, 0, 0)
@@ -161,6 +157,7 @@ stream = ExtResource("8_k528o")
 unique_name_in_owner = true
 
 [node name="Electronic front" parent="Pinball/Electronic front_1" parent_id_path=PackedInt32Array(1902378416, 371794553) index="1" unique_id=392062381 instance=ExtResource("4_7dlyx")]
+unique_name_in_owner = true
 
 [node name="Bumper_1" parent="Pinball" index="12" unique_id=1750247290]
 collision_mask = 16
@@ -268,7 +265,7 @@ unique_name_in_owner = true
 
 [node name="IdleCamera" type="Camera3D" parent="Cameras" unique_id=428337485]
 unique_name_in_owner = true
-transform = Transform3D(0.6950533, -0.28420863, 0.6603987, 0, 0.9185495, 0.39530617, -0.71895826, -0.27475885, 0.6384408, 0.97473145, 1.487915, 0.43639374)
+transform = Transform3D(0.7801555, -0.24889761, 0.57394034, 0, 0.9174447, 0.39786336, -0.62558573, -0.31039524, 0.7157495, 2.0496826, 1.822998, 0.052696228)
 current = true
 
 [node name="PlayerCamera" type="Camera3D" parent="Cameras" unique_id=491274703]

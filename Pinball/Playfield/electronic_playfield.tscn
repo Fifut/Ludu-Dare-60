@@ -34,6 +34,5 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.1
 [node name="BreakDownTimer" type="Timer" parent="." index="2" unique_id=7929312]
 unique_name_in_owner = true
 wait_time = 20.0
-autostart = true
 
 [connection signal="timeout" from="BreakDownTimer" to="." method="_on_break_down_timer_timeout"]

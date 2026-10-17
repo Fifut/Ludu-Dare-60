@@ -57,12 +57,3 @@ func switch_to(camera: CAMERA):
 	tween.set_parallel()
 	tween.tween_property(move_camera, "global_transform", transform_target, 0.3)
 	tween.tween_property(move_camera, "fov", fov_target, 0.3)
-	#tween.tween_callback(
-		#func():
-			#pass
-			#match camera:
-				#CAMERA.IDLE: idle_camera.make_current()
-				#CAMERA.PLAYER: player_camera.make_current()
-				#CAMERA.PLAYFIELD: playfield_camera.make_current()
-				#CAMERA.FRONT: front_camera.make_current()
-	#)

@@ -31,6 +31,9 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c57u"]
+bg_color = Color(0.45882353, 0.6627451, 0.42745098, 1)
+
 [resource]
 default_font = ExtResource("1_e1x85")
 default_font_size = 32
@@ -43,3 +46,4 @@ Button/styles/normal = SubResource("StyleBoxFlat_cjfk0")
 Button/styles/pressed = SubResource("StyleBoxFlat_cjfk0")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_knuud")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_5l758")
+VSlider/styles/grabber_area = SubResource("StyleBoxFlat_4c57u")

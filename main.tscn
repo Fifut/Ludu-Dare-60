@@ -101,7 +101,11 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuCanvasLayer/MarginContainer" unique_id=1927254169]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuCanvasLayer/MarginContainer" unique_id=943149715]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuCanvasLayer/MarginContainer/HBoxContainer" unique_id=1927254169]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -109,34 +113,72 @@ offset_transform_position = Vector2(2.075, 0)
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="StartButton" type="Button" parent="MenuCanvasLayer/MarginContainer/VBoxContainer" unique_id=1797793119]
+[node name="StartButton" type="Button" parent="MenuCanvasLayer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1797793119]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Start"
 
-[node name="HowToButton" type="Button" parent="MenuCanvasLayer/MarginContainer/VBoxContainer" unique_id=1608832079]
+[node name="HowToButton" type="Button" parent="MenuCanvasLayer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1608832079]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "How to play"
 
-[node name="QuitButton" type="Button" parent="MenuCanvasLayer/MarginContainer/VBoxContainer" unique_id=242718471]
+[node name="QuitButton" type="Button" parent="MenuCanvasLayer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=242718471]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Quit"
 
-[node name="BackToButton" type="Button" parent="MenuCanvasLayer/MarginContainer/VBoxContainer" unique_id=209788126]
+[node name="BackToButton" type="Button" parent="MenuCanvasLayer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=209788126]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back"
+
+[node name="MainVBoxContainer" type="VBoxContainer" parent="MenuCanvasLayer/MarginContainer/HBoxContainer" unique_id=1362246948]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="MenuCanvasLayer/MarginContainer/HBoxContainer/MainVBoxContainer" unique_id=438629915]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Main"
+
+[node name="MainVSlider" type="VSlider" parent="MenuCanvasLayer/MarginContainer/HBoxContainer/MainVBoxContainer" unique_id=985433170]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MusicVBoxContainer" type="VBoxContainer" parent="MenuCanvasLayer/MarginContainer/HBoxContainer" unique_id=1601860502]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="MenuCanvasLayer/MarginContainer/HBoxContainer/MusicVBoxContainer" unique_id=114797600]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Music"
+
+[node name="MusicVSlider" type="VSlider" parent="MenuCanvasLayer/MarginContainer/HBoxContainer/MusicVBoxContainer" unique_id=203955332]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+max_value = 1.0
+step = 0.01
+value = 1.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MenuCanvasLayer/MarginContainer" unique_id=1543607768]
 layout_mode = 2
@@ -161,6 +203,15 @@ size_flags_vertical = 8
 theme_override_font_sizes/font_size = 64
 text = "Ball : 0"
 
+[node name="FinishTimeLabel" type="Label" parent="MenuCanvasLayer/MarginContainer/VBoxContainer2" unique_id=1236991189]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 64
+text = "Time : 0"
+
 [node name="Play" type="VBoxContainer" parent="." unique_id=1807980605]
 unique_name_in_owner = true
 visible = false
@@ -179,8 +230,8 @@ size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="Play" unique_id=1475080746]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "💗"
+text = "Life"
+horizontal_alignment = 1
 
 [node name="LifeProgressBar" type="ProgressBar" parent="Play" unique_id=906180775]
 unique_name_in_owner = true
@@ -191,6 +242,12 @@ size_flags_vertical = 4
 value = 80.0
 fill_mode = 3
 show_percentage = false
+
+[node name="TimeLabel" type="Label" parent="Play" unique_id=359262012]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00:00"
+horizontal_alignment = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=344194301]
 environment = SubResource("Environment_0xm2m")
@@ -317,8 +374,10 @@ stream = ExtResource("9_4c57u")
 volume_db = -10.0
 bus = &"Music"
 
-[connection signal="pressed" from="MenuCanvasLayer/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MenuCanvasLayer/MarginContainer/VBoxContainer/HowToButton" to="." method="_on_how_to_button_pressed"]
-[connection signal="pressed" from="MenuCanvasLayer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="MenuCanvasLayer/MarginContainer/VBoxContainer/BackToButton" to="." method="_on_back_to_button_pressed"]
+[connection signal="pressed" from="MenuCanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuCanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/HowToButton" to="." method="_on_how_to_button_pressed"]
+[connection signal="pressed" from="MenuCanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MenuCanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/BackToButton" to="." method="_on_back_to_button_pressed"]
+[connection signal="value_changed" from="MenuCanvasLayer/MarginContainer/HBoxContainer/MainVBoxContainer/MainVSlider" to="." method="_on_main_v_slider_value_changed"]
+[connection signal="value_changed" from="MenuCanvasLayer/MarginContainer/HBoxContainer/MusicVBoxContainer/MusicVSlider" to="." method="_on_music_v_slider_value_changed"]
 [connection signal="on_game_over" from="Pinball" to="." method="_on_pinball_on_game_over"]

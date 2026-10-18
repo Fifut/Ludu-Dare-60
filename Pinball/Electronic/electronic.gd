@@ -110,7 +110,7 @@ func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3,
 
 
 func _on_bad_timer_timeout() -> void:
-	bad_timer.start()
+	bad_timer.start(randf_range(3.0, 5.0))
 	lighting_mesh.start()
 	GameManager.on_malfunction_puls.emit()
 	

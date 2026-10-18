@@ -4,6 +4,7 @@ extends Node
 
 signal on_game_start()
 signal on_game_stop()
+signal on_lose_ball()
 
 signal on_add_point()
 signal on_malfunction_puls()

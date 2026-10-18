@@ -1,6 +1,9 @@
 extends Node3D
 
 signal on_score_overflow()
+signal on_score_underflow()
+
+@export var first: bool = false
 
 @onready var num_label: Label3D = %NumLabel
 
@@ -29,4 +32,11 @@ func add_point(point: int = 1):
 	if _scrore > 9:
 		_scrore = 0
 		on_score_overflow.emit()
-	
+	#elif _scrore < 0 and not first:
+		#_scrore = 9
+		#on_score_underflow.emit()
+	#elif _scrore < 0 and first:
+		#_scrore = 0
+	elif _scrore < 0:
+		_scrore = 0
+		on_score_underflow.emit()

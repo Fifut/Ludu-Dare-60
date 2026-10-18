@@ -20,5 +20,5 @@ script = ExtResource("1_jihx2")
 
 [node name="LightingTimer" type="Timer" parent="." unique_id=408588992]
 unique_name_in_owner = true
-wait_time = 0.2
+wait_time = 0.4
 one_shot = true

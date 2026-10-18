@@ -56,6 +56,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20127337, 0)
 
 [node name="ScoreWheel001" parent="ScoreWeels" index="2" unique_id=806380280 instance=ExtResource("3_l8ppm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, 0.20127337, 0)
+first = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ScoreWeels" index="3" unique_id=1111736003]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0049999654, 0.19999999, -0.094999984)
@@ -65,6 +66,9 @@ mesh = SubResource("BoxMesh_knuud")
 unique_name_in_owner = true
 wait_time = 20.0
 
+[connection signal="on_score_underflow" from="ScoreWeels/ScoreWheel100" to="." method="_on_score_wheel_100_on_score_underflow"]
 [connection signal="on_score_overflow" from="ScoreWeels/ScoreWheel010" to="." method="_on_score_wheel_010_on_score_overflow"]
+[connection signal="on_score_underflow" from="ScoreWeels/ScoreWheel010" to="." method="_on_score_wheel_010_on_score_underflow"]
 [connection signal="on_score_overflow" from="ScoreWeels/ScoreWheel001" to="." method="_on_score_wheel_001_on_score_overflow"]
+[connection signal="on_score_underflow" from="ScoreWeels/ScoreWheel001" to="." method="_on_score_wheel_001_on_score_underflow"]
 [connection signal="timeout" from="BreakDownTimer" to="." method="_on_break_down_timer_timeout"]

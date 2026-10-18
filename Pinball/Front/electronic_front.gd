@@ -9,6 +9,9 @@ extends Node3D
 @onready var score_wheel_001: Node3D = $ScoreWeels/ScoreWheel001
 
 
+var _range: float = 15.0
+
+
 func _ready() -> void:
 	break_down_timer.wait_time = randf_range(10.0, 20.0)
 	
@@ -17,9 +20,20 @@ func _ready() -> void:
 			score_wheel_001.add_point()
 	)
 	
+	GameManager.on_malfunction_puls.connect(
+		func():
+			score_wheel_001.add_point(-1)
+	)
+	
+	GameManager.on_lose_ball.connect(
+		func():
+			score_wheel_010.add_point(-1)
+	)
+	
 	GameManager.on_game_start.connect(
 		func():
 			break_down_timer.start()
+			_range = 15.0
 	)
 	
 	GameManager.on_game_stop.connect(
@@ -48,7 +62,8 @@ func _break_component():
 		
 
 func _on_break_down_timer_timeout() -> void:
-	break_down_timer.wait_time = randf_range(10.0, 20.0)
+	_range -= 1.0
+	break_down_timer.wait_time = randf_range(_range, _range + 5.0)
 	_break_component()
 	
 
@@ -58,3 +73,15 @@ func _on_score_wheel_001_on_score_overflow() -> void:
 
 func _on_score_wheel_010_on_score_overflow() -> void:
 	score_wheel_100.add_point()
+
+
+func _on_score_wheel_100_on_score_underflow() -> void:
+	pass
+
+
+func _on_score_wheel_010_on_score_underflow() -> void:
+	score_wheel_100.add_point(-1)
+
+
+func _on_score_wheel_001_on_score_underflow() -> void:
+	score_wheel_010.add_point(-1)

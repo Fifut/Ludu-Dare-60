@@ -5,6 +5,7 @@ extends Node3D
 @onready var play: VBoxContainer = %Play
 @onready var life_progress_bar: ProgressBar = %LifeProgressBar
 @onready var score_label: Label = %ScoreLabel
+@onready var ball_label: Label = %BallLabel
 
 @onready var pinball: Pinball = %Pinball
 
@@ -52,8 +53,9 @@ func _on_start_button_pressed() -> void:
 	music_stream_player.play()
 
 
-func _on_pinball_on_game_over(_score: int) -> void:
-	score_label.text = "Score: " + str(_score)
+func _on_pinball_on_game_over(score: int, ball: int) -> void:
+	score_label.text = "Score: " + str(score)
+	ball_label.text = "Ball: " + str(ball)
 	play.hide()
 	menu_canvas_layer.show()
 	move_camera.make_current()

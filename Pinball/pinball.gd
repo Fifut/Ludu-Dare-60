@@ -1,6 +1,6 @@
 class_name Pinball extends Node3D
 
-signal on_game_over(score: int)
+signal on_game_over(score: int, ball: int)
 
 @onready var cameras: PinballCamera = %Cameras
 
@@ -146,6 +146,8 @@ func start():
 
 func stop():
 	_play = false
+	if _ball:
+		_ball.queue_free()
 	end_audio.play()
 	cameras.switch_to(PinballCamera.CAMERA.IDLE)
 	
@@ -157,6 +159,7 @@ func _on_lose_area_body_entered(body: Node3D) -> void:
 		gate.reset()
 		_ball_in_play += 1
 		ball_laoding_audio.play()
+		GameManager.on_lose_ball.emit()
 
 
 func _on_ball_laoding_audio_finished() -> void:
@@ -166,4 +169,4 @@ func _on_ball_laoding_audio_finished() -> void:
 
 
 func _on_end_audio_finished() -> void:
-	on_game_over.emit(electronic_front.get_score())
+	on_game_over.emit(electronic_front.get_score(), _ball_in_play)

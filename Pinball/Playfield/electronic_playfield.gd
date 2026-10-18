@@ -4,10 +4,13 @@ extends Node3D
 @onready var electronics: Node3D = %Electronics
 @onready var break_down_timer: Timer = %BreakDownTimer
 
+var _range: float = 15.0
+
 func _ready() -> void:
 	GameManager.on_game_start.connect(
 		func():
 			break_down_timer.start()
+			_range = 15.0
 	)
 	
 	GameManager.on_game_stop.connect(
@@ -22,5 +25,6 @@ func _break_component():
 
 
 func _on_break_down_timer_timeout() -> void:
-	break_down_timer.wait_time = randf_range(10.0, 20.0)
+	_range -= 1.0
+	break_down_timer.wait_time = randf_range(_range, _range + 5.0)
 	_break_component()

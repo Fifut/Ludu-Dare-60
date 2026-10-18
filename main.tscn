@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cl6um1bcj0qgo" path="res://Assets/Models 3D/Hammer.glb" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://tisv4mp252y5" path="res://Assets/Models 3D/lock_bar.glb" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cnuvvduyjrm54" path="res://Assets/Models 3D/Pinball.glb" id="7_272bh"]
+[ext_resource type="AudioStream" uid="uid://dy6gwtaqqdhlq" path="res://Assets/Sounds/music.wav" id="8_kek77"]
+[ext_resource type="AudioStream" uid="uid://8w87xjgdknca" path="res://Assets/Sounds/menu.wav" id="9_4c57u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -253,19 +255,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00028665364)
 
 [node name="KeysLabel" type="Label3D" parent="Pinball" unique_id=1075053631]
 transform = Transform3D(-4.3711385e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.3711385e-08, -0.34199625, 0.76761025, -1.2273551)
-pixel_size = 0.002
+pixel_size = 0.001
 shaded = true
-text = "A -> Left flipper
-D -> Right flipper
-
-W -> Scoring \"repair\" view
-S -> Playfield \"repair\" view
-
-Space -> Ball launch
-
-Left click -> \"Repair\""
+text = "Play pinball using A, D and SPACE
+-
+When coils burn, access the electrical cabinets with W or S
+and fix them with your hammer (left click)
+-
+!!! Burning coils cause electric shocks !!!"
+font_size = 38
 outline_size = 8
 horizontal_alignment = 0
+line_spacing = 25.0
 
 [node name="HowToCamera" type="Camera3D" parent="Pinball" unique_id=1349406196]
 unique_name_in_owner = true
@@ -289,6 +290,18 @@ transform = Transform3D(0.6192485, 0.3413666, -0.7071067, 0.48276526, -0.8757498
 
 [node name="Pinball2" parent="." unique_id=722641289 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.98274773, 0, -0.18495096, 0, 1, 0, 0.18495096, 0, 0.98274773, 4.0790334, 0, -0.029979214)
+
+[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=790525775]
+unique_name_in_owner = true
+stream = ExtResource("8_kek77")
+volume_db = -10.0
+bus = &"Music"
+
+[node name="MenuStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1370256690]
+unique_name_in_owner = true
+stream = ExtResource("9_4c57u")
+volume_db = -10.0
+bus = &"Music"
 
 [connection signal="pressed" from="MenuCanvasLayer/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuCanvasLayer/MarginContainer/VBoxContainer/HowToButton" to="." method="_on_how_to_button_pressed"]

@@ -9,7 +9,7 @@ signal on_game_over(score: int)
 
 @onready var glass: Node3D = $Pinball/Glass_1
 @onready var playfield: Node3D = $Pinball/Playfield_1
-#@onready var playfield_collision_shape: CollisionShape3D = %PlayfieldCollisionShape
+@onready var front_collision_shape: CollisionShape3D = %FrontCollisionShape
 
 @onready var electronic_front: Node3D = %"Electronic front"
 
@@ -50,6 +50,7 @@ func _ready() -> void:
 	flipper_2.rotation_degrees.y = _right_flip_target
 	
 	GameManager.current_camera = player_marker
+	front_collision_shape.disabled = false
 	
 	GameManager.on_game_start.connect(
 		func():
@@ -74,12 +75,14 @@ func _process(_delta: float) -> void:
 		cameras.switch_to(PinballCamera.CAMERA.PLAYER)
 		playfield.show()
 		glass.show()
+		front_collision_shape.disabled = false
 		GameManager.on_player_view.emit()
 		
 	elif Input.is_action_just_pressed("front_view") and cameras.get_current_camera() == cameras.CAMERA.FRONT:
 		cameras.switch_to(PinballCamera.CAMERA.PLAYER)
 		playfield.show()
 		glass.show()
+		front_collision_shape.disabled = false
 		GameManager.on_player_view.emit()
 		
 	elif Input.is_action_just_pressed("playfield_view"):
@@ -89,6 +92,7 @@ func _process(_delta: float) -> void:
 		
 	elif Input.is_action_just_pressed("front_view"):
 		cameras.switch_to(PinballCamera.CAMERA.FRONT)
+		front_collision_shape.disabled = true
 		GameManager.on_relay_click.emit(hammer_front_marker.transform)
 		glass.hide()
 	 
@@ -136,6 +140,7 @@ func start():
 	playfield.show()
 	glass.show()
 	gate.reset()
+	front_collision_shape.disabled = false
 	cameras.switch_to(PinballCamera.CAMERA.PLAYER)
 
 

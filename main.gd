@@ -17,10 +17,14 @@ extends Node3D
 @onready var quit_button: Button = %QuitButton
 @onready var back_to_button: Button = %BackToButton
 
+@onready var music_stream_player: AudioStreamPlayer = %MusicStreamPlayer
+@onready var menu_stream_player: AudioStreamPlayer = %MenuStreamPlayer
+
 
 
 func _ready() -> void:
 	randomize()
+	menu_stream_player.play()
 	
 	move_camera.make_current()
 	
@@ -44,6 +48,8 @@ func _on_start_button_pressed() -> void:
 	life_progress_bar.value = 100.0
 	menu_canvas_layer.hide()
 	play.show()
+	menu_stream_player.stop()
+	music_stream_player.play()
 
 
 func _on_pinball_on_game_over(_score: int) -> void:
@@ -51,6 +57,8 @@ func _on_pinball_on_game_over(_score: int) -> void:
 	play.hide()
 	menu_canvas_layer.show()
 	move_camera.make_current()
+	music_stream_player.stop()
+	menu_stream_player.play()
 
 
 func _on_quit_button_pressed() -> void:

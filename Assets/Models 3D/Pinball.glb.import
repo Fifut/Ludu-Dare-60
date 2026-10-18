@@ -61,6 +61,12 @@ _subresources={
 },
 "PATH:Flipper_2": {
 "node/node_type": "AnimatableBody3D"
+},
+"PATH:side_bumper_1": {
+"node/node_type": "StaticBody3D"
+},
+"PATH:side_bumper_2": {
+"node/node_type": "StaticBody3D"
 }
 }
 }

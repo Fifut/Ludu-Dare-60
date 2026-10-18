@@ -17,6 +17,20 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knuud"]
+bg_color = Color(0.42318463, 9.0846794e-07, 3.128499e-07, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5l758"]
+bg_color = Color(1.1310726e-06, 0.63421637, 9.62615e-07, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [resource]
 default_font = ExtResource("1_e1x85")
 default_font_size = 32
@@ -27,3 +41,5 @@ Button/styles/focus = SubResource("StyleBoxFlat_cjfk0")
 Button/styles/hover = SubResource("StyleBoxFlat_cjfk0")
 Button/styles/normal = SubResource("StyleBoxFlat_cjfk0")
 Button/styles/pressed = SubResource("StyleBoxFlat_cjfk0")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_knuud")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_5l758")

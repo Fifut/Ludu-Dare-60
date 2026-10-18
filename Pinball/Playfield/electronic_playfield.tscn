@@ -2,34 +2,43 @@
 
 [ext_resource type="PackedScene" uid="uid://ennsmb28f1bc" path="res://Assets/Models 3D/Electronic playfield.glb" id="1_ekxgg"]
 [ext_resource type="Script" uid="uid://bd4sutf68nd33" path="res://Pinball/Playfield/electronic_playfield.gd" id="2_f260g"]
+[ext_resource type="Texture2D" uid="uid://cpnvm0d6gdh5d" path="res://Assets/Images/playfield.jpg" id="3_hoig5"]
 [ext_resource type="PackedScene" uid="uid://f7ypqae6q7xo" path="res://Pinball/Electronic/electronic.tscn" id="3_v6a2x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k528o"]
+albedo_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+albedo_texture = ExtResource("3_hoig5")
+uv1_scale = Vector3(1.6, 1, 0.9)
+uv1_offset = Vector3(-0.5, 0, -1.5)
+uv1_triplanar = true
 
 [node name="Electronic playfield" unique_id=221682441 instance=ExtResource("1_ekxgg")]
 script = ExtResource("2_f260g")
 
 [node name="Solide1" parent="." index="0" unique_id=878644020]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_k528o")
 
 [node name="Electronics" type="Node3D" parent="." index="1" unique_id=814144387]
 unique_name_in_owner = true
 
 [node name="Electronic1" parent="Electronics" index="0" unique_id=1712152631 instance=ExtResource("3_v6a2x")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.1, 0.05, -0.2)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.07, 0.05, -0.21000001)
 
 [node name="Electronic2" parent="Electronics" index="1" unique_id=2033845912 instance=ExtResource("3_v6a2x")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.1, 0.05, 0.3)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.120000005, 0.05, -0.44)
 
 [node name="Electronic3" parent="Electronics" index="2" unique_id=1344165445 instance=ExtResource("3_v6a2x")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.1, 0.05, 0.1)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.08, 0.05, -0.009999998)
 
 [node name="Electronic4" parent="Electronics" index="3" unique_id=1957044233 instance=ExtResource("3_v6a2x")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.15, 0.05, -0.1)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.16000001, 0.05, -0.22999999)
 
 [node name="Electronic5" parent="Electronics" index="4" unique_id=117601541 instance=ExtResource("3_v6a2x")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.1, 0.05, 0.3)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.1, 0.05, -0.5)
 
 [node name="Electronic6" parent="Electronics" index="5" unique_id=973791471 instance=ExtResource("3_v6a2x")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.14, 0.05, 0.049999997)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.16, 0.05, 0)
 
 [node name="BreakDownTimer" type="Timer" parent="." index="2" unique_id=7929312]
 unique_name_in_owner = true

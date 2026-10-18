@@ -27,15 +27,20 @@ signal on_game_over(score: int)
 @onready var ball_in_play_value: Label3D = %BallInPlayValue
 
 @onready var hurt_audio: AudioStreamPlayer3D = %HurtAudio
+@onready var end_audio: AudioStreamPlayer = %EndAudio
 
 @onready var player_marker: Marker3D = %PlayerMarker
+@onready var hammer_front_marker: Marker3D = %HammerFrontMarker
+@onready var hammer_play_field_marker: Marker3D = %HammerPlayFieldMarker
+
+@onready var gate: StaticBody3D = %Gate
 
 const BALL = preload("uid://cvxwk8nmkb0rn")
 
 var _left_flip_target: float = -25.0
 var _right_flip_target: float = -150.0
 var _play: bool = false
-var _ball_in_play: int = 4
+var _ball_in_play: int = 0
 var _ball: Ball
 
 
@@ -48,11 +53,7 @@ func _ready() -> void:
 	
 	GameManager.on_game_start.connect(
 		func():
-			_play = true
-			ball_laoding_audio.play()
-			playfield.show()
-			glass.show()
-			cameras.switch_to(PinballCamera.CAMERA.PLAYER)
+			start()
 	)
 	
 	GameManager.on_malfunction_puls.connect(
@@ -83,10 +84,12 @@ func _process(_delta: float) -> void:
 		
 	elif Input.is_action_just_pressed("playfield_view"):
 		cameras.switch_to(PinballCamera.CAMERA.PLAYFIELD)
+		GameManager.on_relay_click.emit(hammer_play_field_marker.transform)
 		playfield.hide()
 		
 	elif Input.is_action_just_pressed("front_view"):
 		cameras.switch_to(PinballCamera.CAMERA.FRONT)
+		GameManager.on_relay_click.emit(hammer_front_marker.transform)
 		glass.hide()
 	 
 	
@@ -128,30 +131,34 @@ func _process(_delta: float) -> void:
 
 func start():
 	_play = true
-	_ball_in_play = 4
+	_ball_in_play = 1
 	ball_laoding_audio.play()
 	playfield.show()
 	glass.show()
+	gate.reset()
 	cameras.switch_to(PinballCamera.CAMERA.PLAYER)
 
 
 func stop():
 	_play = false
+	end_audio.play()
 	cameras.switch_to(PinballCamera.CAMERA.IDLE)
-	on_game_over.emit(electronic_front.get_score())
+	
 
 
 func _on_lose_area_body_entered(body: Node3D) -> void:
 	if body is Ball:
 		body.queue_free()
-		_ball_in_play -= 1
-		if _ball_in_play > 0:
-			start()
-		else:
-			stop()
+		gate.reset()
+		_ball_in_play += 1
+		ball_laoding_audio.play()
 
 
 func _on_ball_laoding_audio_finished() -> void:
 	var ball: Ball = BALL.instantiate()
 	spawn_ball_marker.add_child(ball, true)
 	_ball = ball
+
+
+func _on_end_audio_finished() -> void:
+	on_game_over.emit(electronic_front.get_score())

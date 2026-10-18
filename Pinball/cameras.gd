@@ -37,9 +37,10 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	
+	# Return orign after shake
 	match _current_camera:
 		CAMERA.IDLE:
-			move_camera.position = lerp(move_camera.position, idle_camera.position, 0.2)
+			move_camera.position = lerp(move_camera.position, idle_camera.position, 0.8)
 			
 		CAMERA.PLAYER:
 			move_camera.position = lerp(move_camera.position, player_camera.position, 0.2)
@@ -57,17 +58,23 @@ func get_current_camera() -> CAMERA:
 
 func switch_to(camera: CAMERA):
 
+	move_camera.make_current()
+	
 	var transform_target: Transform3D
 	var fov_target: float
+	var duration: float = 0.3
 	
 	match camera:
 		CAMERA.IDLE:
 			transform_target = idle_camera.global_transform
 			fov_target = idle_camera.fov
+			duration = 0.8
 			
 		CAMERA.PLAYER:
 			transform_target = player_camera.global_transform
 			fov_target = player_camera.fov
+			if _current_camera == CAMERA.IDLE:
+				duration = 0.8
 			
 		CAMERA.PLAYFIELD:
 			transform_target = playfield_camera.global_transform
@@ -81,7 +88,7 @@ func switch_to(camera: CAMERA):
 
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_parallel()
-	tween.tween_property(move_camera, "global_transform", transform_target, 0.3)
-	tween.tween_property(move_camera, "fov", fov_target, 0.3)
+	tween.tween_property(move_camera, "global_transform", transform_target, duration)
+	tween.tween_property(move_camera, "fov", fov_target, duration)

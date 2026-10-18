@@ -3,7 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://b81v8p1rsmk1l" path="res://Assets/Models 3D/Electronic front.glb" id="1_hudyf"]
 [ext_resource type="Script" uid="uid://dvoaexyhbmop3" path="res://Pinball/Front/electronic_front.gd" id="2_l8ppm"]
 [ext_resource type="PackedScene" uid="uid://f7ypqae6q7xo" path="res://Pinball/Electronic/electronic.tscn" id="2_qomfy"]
+[ext_resource type="Texture2D" uid="uid://b2c14af8ky0tp" path="res://Assets/Images/front.jpg" id="3_br2v3"]
 [ext_resource type="PackedScene" uid="uid://kp47jywi4cgg" path="res://Pinball/Front/score_wheel.tscn" id="3_l8ppm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
+albedo_color = Color(0.60933006, 0.6093301, 0.60933006, 1)
+albedo_texture = ExtResource("3_br2v3")
+uv1_scale = Vector3(1.26, 1.26, 1.26)
+uv1_offset = Vector3(0.48, 0.1, 0)
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qomfy"]
 albedo_color = Color(0.13319641, 0.13319641, 0.13319638, 1)
@@ -19,6 +27,7 @@ script = ExtResource("2_l8ppm")
 
 [node name="Solide1" parent="." index="0" unique_id=105725719]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.019889567)
+surface_material_override/0 = SubResource("StandardMaterial3D_lquwl")
 
 [node name="Electronics" type="Node3D" parent="." index="1" unique_id=1021808428]
 unique_name_in_owner = true
@@ -55,7 +64,6 @@ mesh = SubResource("BoxMesh_knuud")
 [node name="BreakDownTimer" type="Timer" parent="." index="3" unique_id=1717189609]
 unique_name_in_owner = true
 wait_time = 20.0
-autostart = true
 
 [connection signal="on_score_overflow" from="ScoreWeels/ScoreWheel010" to="." method="_on_score_wheel_010_on_score_overflow"]
 [connection signal="on_score_overflow" from="ScoreWeels/ScoreWheel001" to="." method="_on_score_wheel_001_on_score_overflow"]

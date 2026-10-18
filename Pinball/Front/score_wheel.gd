@@ -8,6 +8,11 @@ var _scrore: int
 
 func _ready() -> void:
 	_scrore = 0
+	
+	GameManager.on_game_start.connect(
+		func():
+			_scrore = 0
+	)
 
 
 func _process(_delta: float) -> void:
